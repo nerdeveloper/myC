@@ -1,0 +1,53 @@
+
+<ion-content class="background" >
+	<br />
+	
+<ion-card class="">
+	<ion-card-header>
+		LOGIN
+	</ion-card-header>
+  	<br /><br /><br />
+<img src="assets/imgs/image.png" />
+<ion-card-content>
+    <ion-list inset>
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+<br />
+ <a [navPush]="forget">Forget Password?</a>
+<br />
+<br />
+<button ion-button color="secondary" block outline>LOG IN</button> 
+<br />
+
+
+	<a class="align" [navPush]="pushPage" >
+      Don't have an Account?
+  </a>
+	<!--
+	<ion-grid>
+  <ion-row>
+    <ion-col>
+     <a>Forget Password?</a>
+    </ion-col>
+    <ion-col>
+    	<a>
+      Don't have an Account?
+  </a>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+-->
+
+
+
+</ion-list>
+  </ion-card-content>
+</ion-card>
+</ion-content>

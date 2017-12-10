@@ -1,11 +1,19 @@
 <ion-header>
-  <ion-navbar>
+ <ion-navbar [color]="isAndroid ? 'royal' : 'primary'">
+ 	 <ion-buttons right>
+      <button ion-button>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-      About
+     Messages
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+	<ion-fab bottom right>
+    <button ion-fab mini><ion-icon name="chatbubbles"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

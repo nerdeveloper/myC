@@ -1,0 +1,41 @@
+<ion-header>
+   <ion-toolbar [color]="isAndroid ? 'royal' : 'primary'">
+     <ion-title>Broadcast</ion-title>
+        <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+  	   <ion-item>
+      <ion-label>Select the Catergories of Contacts you want to broadcast to</ion-label>
+      <ion-select [(ngModel)]="selection" (change)="openPhone()">
+         <ion-option value="phone_base">Phone Number Base</ion-option>
+          <ion-option value="individual">Individual Recipient</ion-option>
+       <ion-option value="group">Group Recipient</ion-option>
+       <ion-option value="manual">Manual Phone number insert</ion-option>
+      </ion-select>
+
+
+    </ion-item>
+
+    <ion-item *ngIf="show">
+      <ion-input  type="text" placeholder="Username" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block>Sign In</button>
+  </div>
+
+</ion-content>

@@ -1,5 +1,5 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+<ion-tabs class="tabs-icon-text" [color]="isAndroid ? 'tabs' : 'primary'">
+  <ion-tab [root]="tab1Root" tabIcon="home"  tabTitle="Home" tabBadge="" tabBadgeStyle=""></ion-tab>
+  <ion-tab [root]="tab2Root"  tabIcon="mic" tabTitle="Messages" tabBadge="" tabBadgeStyle=""></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="analytics"></ion-tab>
 </ion-tabs>

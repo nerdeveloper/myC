@@ -1,7 +1,12 @@
 <ion-header>
-  <ion-navbar>
+ <ion-navbar [color]="isAndroid ? 'royal' : 'primary'">
+   <ion-buttons right>
+      <button ion-button>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-      Contact
+      Reports
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,4 +19,7 @@
       @ionicframework
     </ion-item>
   </ion-list>
+   <ion-fab right bottom>
+    <button ion-fab mini><ion-icon name="chatbubbles"></ion-icon></button>
+  </ion-fab>
 </ion-content>
