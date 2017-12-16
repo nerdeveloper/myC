@@ -8,7 +8,8 @@ img{
 
     }
     a.align{
-    	text-align: right;
+    	text-align: center;
+    float: center;
     
     }
  .background{
@@ -16,5 +17,16 @@ img{
 //background: linear-gradient(45deg, red, blue);
 background-image: url('../assets/imgs/bg.jpg');
 background-repeat: no-repeat;
- }
+background-color: #bdbdbd ;
+background-size: cover;
+background-position: fixed center;
+}
+ion-item{
+  background: transparent !important;
+}
+.error{
+    color: #ee6e73;
+}
+
+
 }

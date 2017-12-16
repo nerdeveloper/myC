@@ -9,7 +9,75 @@
   </ion-navbar> 
 </ion-header>
 
-<ion-content padding>
+<ion-content class="grid-basic-page" padding>
+  <ion-card>
+      <ion-card-header>
+      Report Charts
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      <ion-card>
+  <ion-card-header>
+   Members
+  </ion-card-header>
+  <ion-card-content>
+    <ion-badge color="secondary">776</ion-badge>
+
+  </ion-card-content>
+</ion-card>
+
+
+      </ion-col>
+      <ion-col>
+       <ion-card>
+  <ion-card-header>
+  SMS Sent
+  </ion-card-header>
+  <ion-card-content>
+    <ion-badge color="secondary">12</ion-badge>
+  </ion-card-content>
+</ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+      <ion-card>
+  <ion-card-header>
+   Total SMS Units
+  </ion-card-header>
+  <ion-card-content>
+   <ion-badge color="secondary"> 44</ion-badge>
+
+  </ion-card-content>
+</ion-card>
+
+
+      </ion-col>
+      <ion-col>
+       <ion-card>
+  <ion-card-header>
+  Birthday Today
+  </ion-card-header>
+  <ion-card-content>
+    <ion-badge color="secondary">3</ion-badge>
+  </ion-card-content>
+</ion-card>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+
   <ion-fab right bottom>
     <button ion-fab mini (click)="openModal(event)"><ion-icon name="chatbubbles"></ion-icon></button>
   </ion-fab>

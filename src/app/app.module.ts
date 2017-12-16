@@ -10,6 +10,13 @@ import { HomePage } from '../pages/home/home';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import  {PopoverComponent } from '../components/popover/popover';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import  {ReactiveFormsModule} from '@angular/forms';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+
+
+
+
 //import  { BroadcastPage } from '../pages/broadcast/broadcast'
 
 
@@ -20,7 +27,6 @@ import  {PopoverComponent } from '../components/popover/popover';
     AboutPage,
     ContactPage,
     HomePage,
-  
     PopoverComponent,
     //BroadcastPage
   ],
@@ -29,7 +35,9 @@ import  {PopoverComponent } from '../components/popover/popover';
     IonicModule.forRoot(MyApp,{
 //     tabsLayout: 'icon-start',
 
-    })
+    }),
+   ReactiveFormsModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +51,9 @@ import  {PopoverComponent } from '../components/popover/popover';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    InAppBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

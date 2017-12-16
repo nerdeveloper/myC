@@ -11,9 +11,14 @@ img{
     	text-align: right;
     }
     .background{
-    	// box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-    	//background: linear-gradient(45deg, red, blue);
-    	background-image: url('../assets/imgs/bg.jpg');
+    //box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+//background: linear-gradient(45deg, red, blue);
+background-image: url('../assets/imgs/bg.jpg');
 background-repeat: no-repeat;
-    	}
+background-size: cover;
+background-position: fixed center;
+}
+ion-item{
+  background: transparent !important;
+}
 }

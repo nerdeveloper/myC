@@ -1,53 +1,37 @@
-
-<ion-content class="background" >
-	<br />
+<ion-content class="background">
+	<br /><br />
+	<img src="assets/imgs/image.png" />
+<ion-card class="color">
+	<!--
+	<ion-card-header>Login</ion-card-header>
+-->
+	<form [formGroup]='form' novalidate>
+		<ion-list inset>
 	
-<ion-card class="">
-	<ion-card-header>
-		LOGIN
-	</ion-card-header>
-  	<br /><br /><br />
-<img src="assets/imgs/image.png" />
-<ion-card-content>
-    <ion-list inset>
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+<ion-item>
+    <!--<ion-label float>Username</ion-label> -->
+    <ion-input placeholder="E-mail Address" type="email" formControlName="email" ></ion-input>
+</ion-item>
+<p *ngIf="form.controls.email.errors?.email" class="error">Enter a Valid E-mail Address</p>
 
-  <ion-item >
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-<br />
+ <ion-item>
+    <!--<ion-label floating>Password</ion-label> -->
+   <ion-input formControlName="password" name="password" placeholder="Password" type="password"></ion-input>
+  </ion-item> 
+<br /><br />
  <a [navPush]="forget">Forget Password?</a>
 <br />
 <br />
-<button ion-button color="secondary" block outline>LOG IN</button> 
+<button type="submit" [disabled]="!form.valid" ion-button color="secondary" block outline>LOG IN</button> 
 <br />
-
-
-	<a class="align" [navPush]="pushPage" >
+<button ion-button class="align" (click)="iabOpen()" center>
       Don't have an Account?
-  </a>
-	<!--
-	<ion-grid>
-  <ion-row>
-    <ion-col>
-     <a>Forget Password?</a>
-    </ion-col>
-    <ion-col>
-    	<a>
-      Don't have an Account?
-  </a>
-    </ion-col>
-  </ion-row>
-</ion-grid>
--->
-
-
+ </button>
+	
 
 </ion-list>
-  </ion-card-content>
+</form>
 </ion-card>
+
+
 </ion-content>
