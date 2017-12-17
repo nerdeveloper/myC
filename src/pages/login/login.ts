@@ -1,8 +1,9 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, ToastController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation'
+import { CustomValidators } from 'ng2-validation';
+import { AuthServiceProvider} from '../../providers/auth-service/auth-service'
 
 
 
@@ -27,10 +28,12 @@ export class LoginPage {
 
 
 form: FormGroup;
+responseData : any;
+ data = {"email": "", "password":""}; 
 
 
 	
-constructor(public toastCtrl: ToastController,public formbuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
+constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
 	
   //this.email = new FormControl("", CustomValidators.email);
   //this.form = new FormGroup({
@@ -53,7 +56,6 @@ constructor(public toastCtrl: ToastController,public formbuilder: FormBuilder,pu
    presentLoading() {
     this.loadingCtrl.create({
       content: 'Please wait...',
-      duration: 3000,
       dismissOnPageChange: true
     }).present();
 
@@ -75,6 +77,17 @@ showToast(position:string){
   });
   toast.present();
 }
+login(){
+    this.authService.postData(this.data, "login").then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData);
+      localStorage.setItem('data', JSON.stringify(this.responseData));
+       this.navCtrl.push("TabsPage");
+
+      }, (err) => {
+        //Connection fa
+      })     
+    }
 
   	 
 

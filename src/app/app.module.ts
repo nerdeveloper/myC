@@ -13,6 +13,8 @@ import  {PopoverComponent } from '../components/popover/popover';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import  {ReactiveFormsModule} from '@angular/forms';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import {HttpModule} from '@angular/http'
+
 
 
 
@@ -36,7 +38,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 //     tabsLayout: 'icon-start',
 
     }),
-   ReactiveFormsModule
+   ReactiveFormsModule,
+   HttpModule
     
   ],
   bootstrap: [IonicApp],
@@ -48,12 +51,13 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     PopoverComponent,
    // BroadcastPage
   ],
+
   providers: [
     StatusBar,
     SplashScreen,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
   ]
 })
 export class AppModule {}
