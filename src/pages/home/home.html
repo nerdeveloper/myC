@@ -1,6 +1,6 @@
 <ion-header>
    <ion-navbar [color]="isAndroid ? 'royal' : 'primary'">
-     <ion-title>My CM</ion-title>
+     <ion-title>{{userDetails.church.name}}</ion-title>
      <ion-buttons end>
       <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>

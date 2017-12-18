@@ -10,7 +10,8 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "runtime": "ionic cordova build android && ionic cordova run android --device"
+    "runtime": "ionic cordova build android && ionic cordova run android --device",
+    "do":"git add . && git cz && git push -u origin master"
   },
   "dependencies": {
     "@angular/common": "5.0.3",

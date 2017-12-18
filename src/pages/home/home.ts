@@ -14,11 +14,13 @@ export class HomePage {
 	 @ViewChild('doughnutCanvas') doughnutCanvas;
 
    doughnutChart: any;
+   public userDetails: any 
 
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
+const userData = JSON.parse(localStorage.getItem('data'));
+this.userDetails = userData.data;
 
-  }
-   presentPopover(event) {
+  }   presentPopover(event) {
     let popover = this.popoverCtrl.create(PopoverComponent);
     popover.present({
     	ev:event
