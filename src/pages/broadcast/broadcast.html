@@ -13,7 +13,7 @@
 
   <ion-list>
   	   <ion-item>
-      <ion-label>Select the Catergories of Contacts you want to broadcast to</ion-label>
+      <ion-label>Select a Catergories </ion-label>
       <ion-select [(ngModel)]="selection" (change)="openPhone()">
          <ion-option value="phone_base">Phone Number Base</ion-option>
           <ion-option value="individual">Individual Recipient</ion-option>
@@ -24,18 +24,32 @@
 
     </ion-item>
 
-    <ion-item *ngIf="show">
-      <ion-input  type="text" placeholder="Username" ></ion-input>
+    <ion-item>
+      <ion-label>Send via </ion-label>
+      <ion-select [(ngModel)]="via" (change)="openPhone()">
+         <ion-option value="phone_base">SMS</ion-option>
+          <ion-option value="individual">E-mail</ion-option>
+       <ion-option value="group">SMS & E-mail</ion-option>
+      </ion-select>
+
+
     </ion-item>
+
 
     <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
-    </ion-item>
+    <ion-label floating>Title of Message</ion-label>
+    <ion-input name="title" type="text"></ion-input>
+  </ion-item>
 
+
+ <ion-item>
+    <!--<ion-label floating>Password</ion-label> -->
+   <ion-textarea name="message" placeholder="Type your message here" type="password"></ion-input>
+  </ion-item> 
   </ion-list>
 
   <div padding>
-    <button ion-button color="primary" block outline>SEND</button>
+    <button ion-button color="primary" block outline>SEND SMS</button>
   </div>
 
 </ion-content>

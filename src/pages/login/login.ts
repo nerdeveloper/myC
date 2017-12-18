@@ -29,8 +29,7 @@ export class LoginPage {
 
 form: FormGroup;
 responseData : any;
- data = {"email": "", "password":""}; 
-
+ data = {"email":"", "password":""}; 
 
 	
 constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {

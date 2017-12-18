@@ -5,12 +5,12 @@
 	<!--
 	<ion-card-header>Login</ion-card-header>
 -->
-	<form [formGroup]='form' novalidate>
+	<form [formGroup]='form' (ngSubmit)="login()">
 		<ion-list inset>
 	
 <ion-item>
     <!--<ion-label float>Username</ion-label> -->
-    <ion-input placeholder="E-mail Address" type="email" formControlName="email"[(ngModel)]="data.email" ></ion-input>
+    <ion-input placeholder="E-mail Address" type="email" formControlName="email" [(ngModel)]="data.email" ></ion-input>
 </ion-item>
 <p *ngIf="form.controls.email.errors?.email" class="error">Enter a Valid E-mail Address</p>
 
@@ -22,7 +22,7 @@
  <a [navPush]="forget">Forget Password?</a>
 <br />
 <br />
-<button type="submit" [disabled]="!form.valid"  ion-button color="secondary" (click)="login()" block outline >LOG IN</button> 
+<button type="submit" [disabled]="!form.valid" (click)="presentLoading()"  ion-button color="secondary" block outline >LOG IN</button> 
 <br />
 <button ion-button class="align" (click)="iabOpen()" center>
       Don't have an Account?
