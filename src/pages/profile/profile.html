@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar [color]="isAndroid ? 'royal' : 'primary'">
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-border>
+  	<br /><br />
+
+    <ion-item>
+      Full Name
+      <ion-note item-end>
+      {{userDetails.church.name}}
+      </ion-note>
+    </ion-item>
+<br /><br />
+   <ion-item>
+    E-mail Address
+      <ion-note item-end>
+     {{userDetails.email}}
+      </ion-note>
+    </ion-item>
+    <br /><br />
+<ion-item>
+    Phone Number
+      <ion-note item-end>
+     <!-- Phone Number of the Church goes here -->
+      </ion-note>
+    </ion-item>

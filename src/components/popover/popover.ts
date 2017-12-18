@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import  { NavParams} from 'ionic-angular';
+import  { NavParams, NavController, App} from 'ionic-angular';
 
 
 /**
@@ -18,11 +18,23 @@ export class PopoverComponent {
    
 
 
-  constructor(public navParams: NavParams) {
+  constructor(public navParams: NavParams, public navCtrl: NavController, public app: App) {
    // console.log('Hello PopoverComponent Component');
    // this.text = 'Hello World';
   }
-    
+    gotoProfile() {
+    //push another page onto the history stack
+    //causing the nav controller to animate the new page in
+    this.navCtrl.push("ProfilePage");
+  }
+  backtoLogin() {
+  	const root = this.app.getRootNav();
+  	root.popToRoot()
+  }
+  logout(){
+  	localStorage.clear();
+  	setTimeout(()=> this.backtoLogin, 2000);
+  }
 }
 
 

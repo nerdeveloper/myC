@@ -47,6 +47,9 @@ constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, 
 	this.forget = "ForgetPasswordPage";
 	this.tabPage = "TabsPage";
  
+ if(localStorage.getItem('data')) {
+   this.navCtrl.setRoot('TabsPage');
+ }
  
 
 	

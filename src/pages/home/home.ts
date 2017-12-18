@@ -26,6 +26,9 @@ this.userDetails = userData.data;
     	ev:event
     });
   }
+
+
+
   openModal(event){
   	let broadcastPage: string = 'BroadcastPage'
   	let modal = this.modalCtrl.create(broadcastPage, event);
