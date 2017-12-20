@@ -71,7 +71,7 @@ login(){
       dismissOnPageChange: true,
       duration:5000,
     });
-    loading.present();
+   
 this.authService.postData(this.data, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
@@ -90,17 +90,7 @@ this.authService.postData(this.data, "login").then((result)=>{
   alert.present();
 
  }
-  loading.onDidDismiss(() => {
-    console.log('Dismissed loading');
-     let alert = this.alertCtrl.create({
-    title: 'Network',
-    subTitle: 'Please Check Network Settings!',
-    buttons: ['Ok']
-  });
-  alert.present();
-
-
-  });
+  
 
 
 })
