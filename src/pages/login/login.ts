@@ -90,6 +90,18 @@ this.authService.postData(this.data, "login").then((result)=>{
   alert.present();
 
  }
+  loading.onDidDismiss(() => {
+    console.log('Dismissed loading');
+     let alert = this.alertCtrl.create({
+    title: 'Network',
+    subTitle: 'Please Check Network Settings!',
+    buttons: ['Ok']
+  });
+  alert.present();
+
+
+  });
+
 
 })
 }
