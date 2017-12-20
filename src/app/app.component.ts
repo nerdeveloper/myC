@@ -20,8 +20,7 @@ export class MyApp {
  }else{
    this.rootPage = "LoginPage";
  }
-
-  }
+}
 
   initializeApp() {
     this.platform.ready().then(() => {

@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, LoadingController, ToastController,} from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, ToastController, AlertController} from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
@@ -33,9 +33,8 @@ responseData : any;
  data = {email:"", password:""}; 
 
 	
-constructor(private network: Network,public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
-	
-  //this.email = new FormControl("", CustomValidators.email);
+constructor(private alertCtrl: AlertController,private network: Network,public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
+	 //this.email = new FormControl("", CustomValidators.email);
   //this.form = new FormGroup({
   //email: this.email
  //})
@@ -49,13 +48,6 @@ constructor(private network: Network,public toastCtrl: ToastController, public f
 	this.tabPage = "TabsPage";
  }
 
-   presentLoading() {
-    this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    }).present();
-
-  }
 
   iabOpen(){
   	const options: InAppBrowserOptions = {
@@ -77,20 +69,31 @@ login(){
    let loading =  this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true,
+      duration:5000,
     });
     loading.present();
 this.authService.postData(this.data, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
-      localStorage.setItem('data', JSON.stringify(this.responseData));
+      console.log(this.responseData.code);
+      if(this.responseData.code === "200" && this.network.onConnect().subscribe()){
+        localStorage.setItem('data', JSON.stringify(this.responseData));
        this.navCtrl.push("TabsPage");
+    
+ }else{
+   loading.dismissAll();
+   let alert = this.alertCtrl.create({
+    title: 'Oops!',
+    subTitle: 'Invalid Email or Password!',
+    buttons: ['Dismiss']
+  });
+  alert.present();
 
-      }, (err) => {
-        //Connection fa
-    });
-   }	 
+ }
 
-  ionViewDidLoad() {
+})
+}
+ ionViewDidLoad() {
 console.log('ionViewDidLoad LoginPage');
 // watch network for a disconnect
 this.network.onDisconnect().subscribe(() => {
@@ -100,6 +103,8 @@ this.network.onDisconnect().subscribe(() => {
    showCloseButton: true,
    closeButtonText: "Ok",
     position: 'top',
+    duration:4000,
+
   });
   toast.present();
 });
@@ -110,12 +115,22 @@ this.network.onDisconnect().subscribe(() => {
    showCloseButton: true,
    closeButtonText: "Ok",
     position: 'top',
+    duration:4000
   });
-  toast.present();ea
+  toast.present();
   
 
-});
-    
+});let net = this.network;
+ if(net.onConnect().subscribe()){
+console.log("hello");
+}
+else{
+  if(net.onDisconnect().subscribe()){
+    console.log('frown');
   }
 
+
+ }
+
+ }
 }
