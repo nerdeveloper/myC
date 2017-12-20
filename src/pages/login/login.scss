@@ -4,14 +4,15 @@ img{
     height:83px;
     display: block;
     margin: auto;
-    
-
     }
     a.align{
-    	text-align: center;
-    float: center;
-    
-    }
+        text-align: right;
+    float: right;
+     }
+    button.align{
+	text-align: right;
+    float: right;
+     }
  .background{
     //box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 //background: linear-gradient(45deg, red, blue);

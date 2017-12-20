@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Component, } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,14 +7,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
-@ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'LoginPage';
+
+  rootPage: string 
 
 //  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+   if(localStorage.getItem('data')) {
+   this.rootPage = "TabsPage";
+ }else{
+   this.rootPage = "LoginPage";
+ }
+
   }
 
   initializeApp() {
@@ -28,6 +34,8 @@ export class MyApp {
       
     });
   }
+
+
 
   
 }

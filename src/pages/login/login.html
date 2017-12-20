@@ -19,18 +19,19 @@
    <ion-input formControlName="password" [(ngModel)]="data.password" name="password" placeholder="Password" type="password"></ion-input>
   </ion-item> 
 <br /><br />
- <a [navPush]="forget">Forget Password?</a>
+<a class="align" [navPush]="forget">Forgot Password?</a>
+
 <br />
 <br />
-<button type="submit" [disabled]="!form.valid" (click)="presentLoading()"  ion-button color="secondary" block outline >LOG IN</button> 
-<br />
-<button ion-button class="align" (click)="iabOpen()" center>
-      Don't have an Account?
- </button>
-	
+<button type="submit" [disabled]="!form.valid" ion-button color="secondary" block >LOG IN</button> 
 
 </ion-list>
 </form>
+
+<button ion-button class="align" (click)="iabOpen()" outline>
+      Don't have an Account?
+ </button>
+ <br /><br />
 </ion-card>
 
 

@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler,} from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -13,6 +13,7 @@ import  {PopoverComponent } from '../components/popover/popover';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import  {ReactiveFormsModule} from '@angular/forms';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { Network } from '@ionic-native/network';
 import {HttpModule} from '@angular/http'
 
 
@@ -30,6 +31,7 @@ import {HttpModule} from '@angular/http'
     ContactPage,
     HomePage,
     PopoverComponent,
+
     //BroadcastPage
   ],
   imports: [
@@ -39,7 +41,7 @@ import {HttpModule} from '@angular/http'
 
     }),
    ReactiveFormsModule,
-   HttpModule
+   HttpModule,
     
   ],
   bootstrap: [IonicApp],
@@ -55,7 +57,7 @@ import {HttpModule} from '@angular/http'
   providers: [
     StatusBar,
     SplashScreen,
-    InAppBrowser,
+    InAppBrowser, Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
   ]

@@ -1,9 +1,10 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, ToastController,} from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { AuthServiceProvider} from '../../providers/auth-service/auth-service'
+import { AuthServiceProvider} from '../../providers/auth-service/auth-service';
+import { Network } from "@ionic-native/network"
 
 
 
@@ -32,7 +33,7 @@ responseData : any;
  data = {email:"", password:""}; 
 
 	
-constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
+constructor(private network: Network,public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
 	
   //this.email = new FormControl("", CustomValidators.email);
   //this.form = new FormGroup({
@@ -46,15 +47,8 @@ constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, 
  
 	this.forget = "ForgetPasswordPage";
 	this.tabPage = "TabsPage";
- 
- if(localStorage.getItem('data')) {
-   this.navCtrl.setRoot('TabsPage');
  }
- 
 
-	
-	
-}
    presentLoading() {
     this.loadingCtrl.create({
       content: 'Please wait...',
@@ -62,14 +56,14 @@ constructor(public toastCtrl: ToastController, public formbuilder: FormBuilder, 
     }).present();
 
   }
+
   iabOpen(){
   	const options: InAppBrowserOptions = {
   		clearsessioncache : 'yes',
   		toolbar:'yes',
-  		toolbarposition: 'top'
-
-  	}
-   const broswer = this.iab.create('http://mychurchmember.com/signup', '_self', options); 
+  	toolbarposition: 'top'
+}
+   const broswer = this.iab.create('https://mychurchmember.com/signup', '_self', options); 
 broswer.show();
 }
 showToast(position:string){
@@ -80,7 +74,12 @@ showToast(position:string){
   toast.present();
 }
 login(){
-    this.authService.postData(this.data, "login").then((result)=>{
+   let loading =  this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true,
+    });
+    loading.present();
+this.authService.postData(this.data, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
       localStorage.setItem('data', JSON.stringify(this.responseData));
@@ -88,13 +87,35 @@ login(){
 
       }, (err) => {
         //Connection fa
-      })     
-    }
-
-  	 
+    });
+   }	 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+console.log('ionViewDidLoad LoginPage');
+// watch network for a disconnect
+this.network.onDisconnect().subscribe(() => {
+  console.log('network was disconnected :-(');
+  let toast = this.toastCtrl.create({
+    message: 'The network is Off',
+   showCloseButton: true,
+   closeButtonText: "Ok",
+    position: 'top',
+  });
+  toast.present();
+});
+ this.network.onConnect().subscribe(() => {
+  console.log('network connected!');
+  let toast = this.toastCtrl.create({
+    message: 'The network is Stable',
+   showCloseButton: true,
+   closeButtonText: "Ok",
+    position: 'top',
+  });
+  toast.present();ea
+  
+
+});
+    
   }
 
 }
