@@ -132,17 +132,10 @@ this.network.onDisconnect().subscribe(() => {
   toast.present();
   
 
-});let net = this.network;
- if(net.onConnect().subscribe()){
-console.log("hello");
-}
-else{
-  if(net.onDisconnect().subscribe()){
-    console.log('frown');
-  }
+});
 
 
  }
 
  }
-}
+
