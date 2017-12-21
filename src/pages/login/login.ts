@@ -76,7 +76,7 @@ this.authService.postData(this.data, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
       console.log(this.responseData.code);
-      if(this.responseData.code === "200" && this.network.onConnect().subscribe()){
+      if(this.responseData.code === "200"){
         localStorage.setItem('data', JSON.stringify(this.responseData));
        this.navCtrl.push("TabsPage");
     

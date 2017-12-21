@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, PopoverController, ModalController } from 'ionic-angular';
 import { Chart } from 'chart.js'
-import {PopoverComponent} from '../../components/popover/popover' ;
-
+import {PopoverComponent} from '../../components/popover/popover' ; 
+import {Http, Headers} from '@angular/http';
 
 
 @Component({
@@ -16,9 +16,13 @@ export class HomePage {
    doughnutChart: any;
    public userDetails: any 
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
+
+  constructor(public http: Http,public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
 const userData = JSON.parse(localStorage.getItem('data'));
 this.userDetails = userData.data;
+
+
+
 
   }   presentPopover(event) {
     let popover = this.popoverCtrl.create(PopoverComponent);
@@ -26,7 +30,7 @@ this.userDetails = userData.data;
     	ev:event
     });
   }
-
+  
 
 
   openModal(event){
@@ -57,7 +61,17 @@ this.userDetails = userData.data;
             }
  
         });
+
+
+      let url = "http://mychurchmember.com/api/get/church"
+let params = "?token=" + this.userDetails.token + "church_id=" + this.userDetails.church_id;
+let headers  = new Headers;
+ return this.http.post(url, params, {headers: headers}).map(res => res.json());
+      
+
+  
    }
+
 }
 
 

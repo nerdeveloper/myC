@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 let apiUrl = "http://mychurchmember.com/api/auth/"; 
 
+
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -31,6 +32,9 @@ export class AuthServiceProvider {
 
   	});
   }
+  
+   
+  
 
 
 }
