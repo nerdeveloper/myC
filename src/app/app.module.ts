@@ -57,7 +57,7 @@ import {HomePage} from '../pages/home/home'
   providers: [
     StatusBar,
     SplashScreen,
-    InAppBrowser, Network, HomePage,
+    InAppBrowser, Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
   ]
