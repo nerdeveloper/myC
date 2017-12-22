@@ -69,9 +69,10 @@ login(){
    let loading =  this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true,
-      duration:5000,
+      duration:10000,
     });
-   
+   loading.present();
+  
 this.authService.postData(this.data, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);

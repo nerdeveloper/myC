@@ -28,7 +28,7 @@
    Members
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">776</ion-badge>
+    <ion-badge color="secondary">{{userGet.members}}</ion-badge>
 
   </ion-card-content>
 </ion-card>
@@ -38,10 +38,10 @@
       <ion-col>
        <ion-card>
   <ion-card-header>
-  SMS Sent
+  Groups
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">12</ion-badge>
+    <ion-badge color="secondary">{{userGet.groups}}</ion-badge>
   </ion-card-content>
 </ion-card>
       </ion-col>
@@ -68,7 +68,7 @@
   Birthday Today
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">3</ion-badge>
+    <ion-badge color="secondary">{{userGet.sms_unit}}</ion-badge>
   </ion-card-content>
 </ion-card>
       </ion-col>

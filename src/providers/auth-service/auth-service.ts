@@ -3,7 +3,10 @@ import {Http, Headers,} from '@angular/http';
 import { Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
-let apiUrl = "http://mychurchmember.com/api/auth/"; 
+
+
+
+let apiUrl = "https://mychurchmember.com/api/auth/"; 
 
 
 /*
@@ -15,7 +18,7 @@ let apiUrl = "http://mychurchmember.com/api/auth/";
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(public http: Http) {
+  constructor(private http: Http) {
     console.log('Hello AuthServiceProvider Provider');
   }
 
@@ -32,7 +35,6 @@ export class AuthServiceProvider {
 
   	});
   }
-  
    
   
 
