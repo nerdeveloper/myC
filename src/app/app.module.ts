@@ -15,7 +15,6 @@ import  {ReactiveFormsModule} from '@angular/forms';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Network } from '@ionic-native/network';
 import {HttpModule} from '@angular/http'
-import {HomePage} from '../pages/home/home'
 
 
 

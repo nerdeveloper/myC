@@ -94,10 +94,8 @@ this.authService.postData(this.info, "login").then((result)=>{
       if(this.responseData.code === "200"){
         localStorage.setItem('data', JSON.stringify(this.responseData));
       this.method();
-      if(localStorage.getItem('property') !== null){
-              this.navCtrl.push("TabsPage");
+     this.navCtrl.push("TabsPage");
       
-}
  }else{
    loading.dismissAll();
    let alert = this.alertCtrl.create({
