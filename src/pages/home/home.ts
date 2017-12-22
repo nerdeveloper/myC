@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, PopoverController, ModalController } from 'ionic-angular';
+import { NavController, PopoverController, ModalController, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import {PopoverComponent} from '../../components/popover/popover' ; 
 import {Http, Headers,} from '@angular/http';
@@ -23,16 +23,15 @@ export class HomePage {
 public userGet: any;
 
 
-  constructor(private http: Http,public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
-const userData = JSON.parse(localStorage.getItem('data'));
-this.userDetails = userData.data;
-const userPrint = JSON.parse(localStorage.getItem('property'));
-this.userGet = userPrint.data;
+  constructor(public loadingCtrl: LoadingController ,private http: Http,public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
+const getData = JSON.parse(localStorage.getItem('property'));
+this.userGet = getData.data;
 
 this.males = this.userGet.males;
 this.females = this.userGet.females;
 
-
+const userData = JSON.parse(localStorage.getItem('data'));
+this.userDetails = userData.data;
 
   }   presentPopover(event) {
     let popover = this.popoverCtrl.create(PopoverComponent);
@@ -40,13 +39,6 @@ this.females = this.userGet.females;
     	ev:event
     });
   }
-  postUserDetails(){
-      let url = "https://mychurchmember.com/api/get/church" + "?token=" + this.userDetails.token 
-let params = "church_id=" + this.userDetails.id;
-let headers  = new Headers();
-headers.append('Content-Type','application/x-www-form-urlencoded');
- return this.http.post(url, params, {headers: headers}).map(response => response.json());
-}
 
   
 
@@ -57,7 +49,9 @@ headers.append('Content-Type','application/x-www-form-urlencoded');
   	modal.present();
 
   }
+
    ionViewDidLoad() {
+
 
         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 
@@ -67,7 +61,7 @@ headers.append('Content-Type','application/x-www-form-urlencoded');
                 labels: ["Males", "Females"],
                 datasets: [{
                     label: '# of Votes',
-                    data: [this.males, this.females],
+                    data: [this.females, this.males],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -81,15 +75,12 @@ headers.append('Content-Type','application/x-www-form-urlencoded');
             }
  
         });
-this.postUserDetails().subscribe(data => this.user = (data),
-  error => alert(error),() =>  localStorage.setItem('property', JSON.stringify(this.user)))
-
-
-// console.log(thisser);;
-  //   
- }
         
 
+         
+ 
+      }
+   
 
 }
 

@@ -5,6 +5,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AuthServiceProvider} from '../../providers/auth-service/auth-service';
 import { Network } from "@ionic-native/network"
+import {Http, Headers}  from "@angular/http"
+
 
 
 
@@ -26,14 +28,16 @@ export class LoginPage {
 	pushPage: string;
 	forget: string;
 	tabPage: string;
+  user: any;
 
-
+userGet: any;
+userDetails: any;
 form: FormGroup;
 responseData : any;
- data = {email:"", password:""}; 
+ info = {email:"", password:""}; 
 
-	
-constructor(private alertCtrl: AlertController,private network: Network,public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
+	data:any;
+constructor(public http: Http, private alertCtrl: AlertController,private network: Network,public toastCtrl: ToastController, public formbuilder: FormBuilder, public navCtrl: NavController, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private iab: InAppBrowser) {
 	 //this.email = new FormControl("", CustomValidators.email);
   //this.form = new FormGroup({
   //email: this.email
@@ -65,22 +69,35 @@ showToast(position:string){
   });
   toast.present();
 }
+ method(){
+            const userData = JSON.parse(localStorage.getItem('data'));
+this.userDetails = userData.data;
+let url = "https://mychurchmember.com/api/get/church" + "?token=" + this.userDetails.token 
+let params = "church_id=" + this.userDetails.id;
+let headers  = new Headers();
+headers.append('Content-Type','application/x-www-form-urlencoded');
+this.http.post(url, params, {headers: headers}).map(response => response.json()).subscribe(data => this.user = localStorage.setItem('property', JSON.stringify(data)),
+  error => alert(error),() =>  console.log(this.user))
+   }
 login(){
    let loading =  this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true,
-      duration:10000,
     });
    loading.present();
+
   
-this.authService.postData(this.data, "login").then((result)=>{
+this.authService.postData(this.info, "login").then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
       console.log(this.responseData.code);
       if(this.responseData.code === "200"){
         localStorage.setItem('data', JSON.stringify(this.responseData));
-       this.navCtrl.push("TabsPage");
-    
+      this.method();
+      if(localStorage.getItem('property') !== null){
+              this.navCtrl.push("TabsPage");
+      
+}
  }else{
    loading.dismissAll();
    let alert = this.alertCtrl.create({
