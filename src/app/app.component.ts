@@ -16,8 +16,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
    if(localStorage.getItem('data')) {
-     localStorage.clear();
-   this.rootPage = "LoginPage";
+   this.rootPage = "TabsPage";
  }else{
    this.rootPage = "LoginPage";
  }

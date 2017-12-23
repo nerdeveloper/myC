@@ -28,7 +28,7 @@
    Members
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">{{userGet}}</ion-badge>
+    <ion-badge color="secondary">{{userGet.members}}</ion-badge>
 
   </ion-card-content>
 </ion-card>
@@ -41,7 +41,7 @@
   Groups
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">{{userGet}}</ion-badge>
+    <ion-badge color="secondary">{{userGet.groups}}</ion-badge>
   </ion-card-content>
 </ion-card>
       </ion-col>
@@ -55,7 +55,7 @@
    Total SMS Units
   </ion-card-header>
   <ion-card-content>
-   <ion-badge color="secondary"> 44</ion-badge>
+   <ion-badge color="secondary"> {{userGet.sms_unit}}</ion-badge>
 
   </ion-card-content>
 </ion-card>
@@ -65,10 +65,10 @@
       <ion-col>
        <ion-card>
   <ion-card-header>
-  Birthday Today
+  Married
   </ion-card-header>
   <ion-card-content>
-    <ion-badge color="secondary">{{userGet}}</ion-badge>
+    <ion-badge color="secondary">{{userGet.married}}</ion-badge>
   </ion-card-content>
 </ion-card>
       </ion-col>

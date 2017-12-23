@@ -29,6 +29,7 @@ export class LoginPage {
 	forget: string;
 	tabPage: string;
   user: any;
+  result: any
 
 userGet: any;
 userDetails: any;
@@ -70,24 +71,23 @@ showToast(position:string){
   toast.present();
 }
  method(){
-            const userData = JSON.parse(localStorage.getItem('data'));
+    const userData = JSON.parse(localStorage.getItem('data'));
 this.userDetails = userData.data;
 let url = "https://mychurchmember.com/api/get/church" + "?token=" + this.userDetails.token 
 let params = "church_id=" + this.userDetails.id;
 let headers  = new Headers();
 headers.append('Content-Type','application/x-www-form-urlencoded');
-let result = this.http.post(url, params, {headers: headers}) .map(
-  response => response.json()).subscribe(function(data){
-this.userGet = data.data;
-localStorage.setItem('property',JSON.stringify(data))
-  console.log(this.userGet);
-  },
-  error => alert(error),() => console.log("hello"));
-const getData = JSON.parse(localStorage.getItem('property'));
-
-
-  
+this.http.post(url, params, {headers: headers}).map(response => response.json()).toPromise()
+                .then((response) =>{
+      this.result = response;
+      console.log(this.result);
+     if(this.result.code === "200"){
+        localStorage.setItem('property', JSON.stringify(this.result));
+ this.navCtrl.push("TabsPage");
+ 
    }
+ })
+              }
 login(){
    let loading =  this.loadingCtrl.create({
       content: 'Please wait...',
@@ -102,9 +102,8 @@ this.authService.postData(this.info, "login").then((result)=>{
       console.log(this.responseData.code);
       if(this.responseData.code === "200"){
         localStorage.setItem('data', JSON.stringify(this.responseData));
-     this.method();
-     
-  this.navCtrl.push("TabsPage");
+      this.method();
+    
       
  }else{
    loading.dismissAll();
@@ -149,9 +148,6 @@ this.network.onDisconnect().subscribe(() => {
   
 
 });
-
-
- }
-
- }
+}
+}
 
