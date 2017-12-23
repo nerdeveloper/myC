@@ -62,7 +62,7 @@ this.userDetails = userData.data;
                 labels: ["Males", "Females"],
                 datasets: [{
                     label: '# of Votes',
-                    data: [this.females, this.males],
+                    data: [this.males, this.females],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

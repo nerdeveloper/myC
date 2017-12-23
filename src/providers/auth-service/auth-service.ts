@@ -26,6 +26,7 @@ export class AuthServiceProvider {
 
   	return new Promise((resolve, reject) => {
   		let headers = new Headers();
+      headers.append('Content-Type','application/x-www-form-urlencoded');
   		this.http.post(apiUrl+type, (credentials), {headers: headers})
   		 .subscribe(res =>{
   			resolve(res.json());
