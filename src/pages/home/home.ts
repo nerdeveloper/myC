@@ -25,11 +25,15 @@ public userGet: any;
 
   constructor(public loadingCtrl: LoadingController ,private http: Http,public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
 const getData = JSON.parse(localStorage.getItem('property'));
+if(getData){
 this.userGet = getData.data;
 
 this.males = this.userGet.males;
 this.females = this.userGet.females;
-
+}else{
+  this.males=0;
+  this.females=0;
+}
 const userData = JSON.parse(localStorage.getItem('data'));
 this.userDetails = userData.data;
 

@@ -76,8 +76,17 @@ let url = "https://mychurchmember.com/api/get/church" + "?token=" + this.userDet
 let params = "church_id=" + this.userDetails.id;
 let headers  = new Headers();
 headers.append('Content-Type','application/x-www-form-urlencoded');
-this.http.post(url, params, {headers: headers}).map(response => response.json()).subscribe(data => this.user = localStorage.setItem('property', JSON.stringify(data)),
-  error => alert(error),() =>  console.log(this.user))
+let result = this.http.post(url, params, {headers: headers}) .map(
+  response => response.json()).subscribe(function(data){
+this.userGet = data.data;
+localStorage.setItem('property',JSON.stringify(data))
+  console.log(this.userGet);
+  },
+  error => alert(error),() => console.log("hello"));
+const getData = JSON.parse(localStorage.getItem('property'));
+
+
+  
    }
 login(){
    let loading =  this.loadingCtrl.create({
@@ -93,8 +102,9 @@ this.authService.postData(this.info, "login").then((result)=>{
       console.log(this.responseData.code);
       if(this.responseData.code === "200"){
         localStorage.setItem('data', JSON.stringify(this.responseData));
-      this.method();
-     this.navCtrl.push("TabsPage");
+     this.method();
+     
+  this.navCtrl.push("TabsPage");
       
  }else{
    loading.dismissAll();
