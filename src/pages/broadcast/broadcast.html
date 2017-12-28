@@ -37,6 +37,12 @@
      <ion-input  name="title" placeholder="Enter a Phone number" type="text"></ion-input>
      </ion-item>
 
+      <ion-item *ngIf="selection === 'group'">
+      <ion-label>Select an Option </ion-label>
+      <ion-select [(ngModel)]="via">
+         <ion-option *ngFor="let item of groups" [value]="item.id">{{item.name}}</ion-option>
+      </ion-select>
+</ion-item>
 
     <ion-item>
     <ion-label floating>Title of Message</ion-label>

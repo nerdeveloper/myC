@@ -22,6 +22,7 @@ export class BroadcastPage {
   selection: string;
   userDetails: any;
   result: any;
+  groups: any
 
   constructor(
     private http: Http,
@@ -54,6 +55,27 @@ export class BroadcastPage {
 
         //}
       });
+let apiurl =
+      "https://mychurchmember.com/api/get/churchgroup" +
+      "?token=" +
+      this.userDetails.token;
+    let param = "church_id=" + this.userDetails.id;
+    let header = new Headers();
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    this.http
+      .post(apiurl, param, { headers: headers })
+      .map(response => response.json())
+      .toPromise()
+      .then(response => {
+        this.groups = response.data;
+        console.log(this.groups);
+
+        // if(this.result.code === "200"){
+        //   localStorage.setItem('property', JSON.stringify(this.result));
+
+        //}
+      });
+      
   }
 
   dismiss() {
