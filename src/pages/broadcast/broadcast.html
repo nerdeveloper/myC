@@ -27,28 +27,20 @@
     <ion-item *ngIf="selection === 'phone_base'">
       <ion-label>Select an Option </ion-label>
       <ion-select [(ngModel)]="via">
-         <ion-option *ngFor="let item of result" [value]="item"
-         
+         <ion-option *ngFor="let item of result" [value]="item.id">{{item.group_name}}</ion-option>
       </ion-select>
 
 
     </ion-item>
 
      <ion-item *ngIf="selection === 'individual'">
-      <ion-label>Send via </ion-label>
-      <ion-select>
-         <ion-option value="">SMS</ion-option>
-          <ion-option value="">E-mail</ion-option>
-       <ion-option value="">SMS & E-mail</ion-option>
-      </ion-select>
-
-
-    </ion-item>
+     <ion-input  name="title" placeholder="Enter a Phone number" type="text"></ion-input>
+     </ion-item>
 
 
     <ion-item>
     <ion-label floating>Title of Message</ion-label>
-    <ion-input name="title" type="text"></ion-input>
+    <ion-input  name="title" type="text"></ion-input>
   </ion-item>
 
 

@@ -46,8 +46,9 @@ export class BroadcastPage {
       .map(response => response.json())
       .toPromise()
       .then(response => {
-        this.result = response;
+        this.result = response.data;
         console.log(this.result);
+
         // if(this.result.code === "200"){
         //   localStorage.setItem('property', JSON.stringify(this.result));
 
