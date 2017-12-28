@@ -6,7 +6,7 @@
         <ion-icon name="close-circle"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-toolbar> 
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -14,7 +14,7 @@
   <ion-list>
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
-      <ion-select [(ngModel)]="selection" (change)="openPhone()">
+      <ion-select [(ngModel)]="selection">
          <ion-option value="phone_base">Phone Number Base</ion-option>
           <ion-option value="individual">Individual Recipient</ion-option>
        <ion-option value="group">Group Recipient</ion-option>
@@ -24,12 +24,22 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="selection === 'phone_base'">
+      <ion-label>Select an Option </ion-label>
+      <ion-select [(ngModel)]="via">
+         <ion-option *ngFor="let item of result" [value]="item"
+         
+      </ion-select>
+
+
+    </ion-item>
+
+     <ion-item *ngIf="selection === 'individual'">
       <ion-label>Send via </ion-label>
-      <ion-select [(ngModel)]="via" (change)="openPhone()">
-         <ion-option value="phone_base">SMS</ion-option>
-          <ion-option value="individual">E-mail</ion-option>
-       <ion-option value="group">SMS & E-mail</ion-option>
+      <ion-select>
+         <ion-option value="">SMS</ion-option>
+          <ion-option value="">E-mail</ion-option>
+       <ion-option value="">SMS & E-mail</ion-option>
       </ion-select>
 
 
@@ -42,10 +52,10 @@
   </ion-item>
 
 
- 
+
     <!--<ion-label floating>Password</ion-label> -->
-   <ion-textarea name="message" max='10' placeholder="Type your message here" type="password"></ion-textarea>
- 
+   <ion-textarea name="message" placeholder="Type your message here" type="password"></ion-textarea>
+
   </ion-list>
 
   <div padding>

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, PopoverController, ModalController, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import {PopoverComponent} from '../../components/popover/popover' ; 
-import {Http, Headers,} from '@angular/http';
+//import {Http, Headers,} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
@@ -23,7 +23,11 @@ export class HomePage {
 public userGet: any;
 
 
-  constructor(public loadingCtrl: LoadingController ,private http: Http,public navCtrl: NavController, public popoverCtrl: PopoverController, public modalCtrl: ModalController){
+  constructor(public loadingCtrl: LoadingController ,
+    //private http: Http
+    public navCtrl: NavController, 
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController){
 const getData = JSON.parse(localStorage.getItem('property'));
 
 this.userGet = getData.data;

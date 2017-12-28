@@ -2,7 +2,7 @@
 import {Http, Headers,} from '@angular/http';
 import { Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-
+import 'rxjs/add/operator/timeout';
 
 
 
@@ -26,8 +26,8 @@ export class AuthServiceProvider {
 
   	return new Promise((resolve, reject) => {
   		let headers = new Headers();
-      headers.append('Content-Type','application/x-www-form-urlencoded');
-  		this.http.post(apiUrl+type, (credentials), {headers: headers})
+      headers.append('Content-Type','application/json');
+  		this.http.post(apiUrl+type, (credentials), {headers: headers}).timeout(3000)
   		 .subscribe(res =>{
   			resolve(res.json());
   		},(err) => {
