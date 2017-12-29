@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, PopoverController, ModalController, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import {PopoverComponent} from '../../components/popover/popover' ; 
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
@@ -24,7 +24,9 @@ export class HomePage {
 public userGet: any;
 result:any
 data: any;
-
+getMessages : any;
+showMessages: any;
+gethere : any;
   constructor(public loadingCtrl: LoadingController ,
     private http: HttpClient,
     private storage: Storage,
@@ -40,6 +42,9 @@ this.females = this.userGet.females;
 
 const userData = JSON.parse(localStorage.getItem('data'));
 this.userDetails = userData.data;
+
+
+
 
   }   presentPopover(event) {
     let popover = this.popoverCtrl.create(PopoverComponent);
@@ -93,12 +98,16 @@ this.userDetails = userData.data;
       "https://mychurchmember.com/api/get/messages" +
       "?token=" +
       this.userDetails.token + "&church_id=" + this.userDetails.id;
-    this.http .get(url).subscribe(data =>{
+    this.http.get(url).subscribe(data =>{
       this.result = data;
       if(this.result.code === "200"){
       console.log(this.result);
-      this.storage.set('message', JSON.stringify(this.result))
+      this.showMessages = JSON.stringify(this.result);
+      this.storage.set('message', this.showMessages)
     }
+
+     
+    
 
     })
      

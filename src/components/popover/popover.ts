@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import  { NavParams, NavController,} from 'ionic-angular';
+import {Storage} from '@ionic/storage'
 
 /**
  * Generated class for the PopoverComponent component.
@@ -18,7 +19,7 @@ export class PopoverComponent {
    
 
 
-  constructor(public navParams: NavParams, public navCtrl: NavController,) {
+  constructor(private storage: Storage, public navParams: NavParams, public navCtrl: NavController,) {
    // console.log('Hello PopoverComponent Component');
    // this.text = 'Hello World';
   }
@@ -33,6 +34,7 @@ export class PopoverComponent {
  // }
   logout(){
   	localStorage.clear();
+    this.storage.clear()
   	this.navCtrl.setRoot("LoginPage");
      this.navCtrl.push("LoginPage");
    

@@ -12,17 +12,17 @@ r<ion-header>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let item of showMessages">
   <ion-card-header>
-    Header
+    {{item.title}}
   </ion-card-header>
   <ion-card-content>
-    The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+   {{item.message}}
   </ion-card-content>
 </ion-card>
-
-	<ion-fab bottom right>
-    <button ion-fab mini><ion-icon name="chatbubbles"></ion-icon></button>
+ 
+	 <ion-fab right bottom>
+    <button ion-fab mini (click)="openModal(event)"><ion-icon name="chatbubbles"></ion-icon></button>
   </ion-fab>
 
 </ion-content>

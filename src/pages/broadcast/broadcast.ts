@@ -28,17 +28,32 @@ export class BroadcastPage {
   result: any;
   groups: any
  form: FormGroup;
+ getMessages : any;
+info:any;
+
+
   constructor(
     private http: Http,
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public formbuilder: FormBuilder,
-    private storage: Storage
+    public storage: Storage
 
-  ) {}
+
+
+
+  ) {
+
+
+  }
+ 
+
+
+
 
   ionViewDidLoad() {
+    
     console.log("ionViewDidLoad BroadcastPage");
     const userData = JSON.parse(localStorage.getItem("data"));
     this.userDetails = userData.data;
@@ -83,11 +98,6 @@ let apiurl =
         //}
      
      });
-
-//this.storage.set('name', 'max');
-this.storage.get('name').then((val) => {
-    console.log('Your age is', val);
-  });
       
   }
 
@@ -98,4 +108,5 @@ this.storage.get('name').then((val) => {
   openPhone() {
     this.show = !this.show;
   }
+
 }

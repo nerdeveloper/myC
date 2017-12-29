@@ -41,10 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    IonicStorageModule.forRoot({
-      name: '__mydb',
-         driverOrder: ['indexeddb', 'websql']
-    })
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
