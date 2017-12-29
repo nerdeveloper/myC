@@ -27,7 +27,7 @@ export class AuthServiceProvider {
   	return new Promise((resolve, reject) => {
   		let headers = new Headers();
       headers.append('Content-Type','application/json');
-  		this.http.post(apiUrl+type, (credentials), {headers: headers}).timeout(3000)
+  		this.http.post(apiUrl+type, (credentials), {headers: headers})
   		 .subscribe(res =>{
   			resolve(res.json());
   		},(err) => {
