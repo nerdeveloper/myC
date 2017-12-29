@@ -19,10 +19,6 @@ import { IonicStorageModule }  from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 
 
-
-
-//import  { BroadcastPage } from '../pages/broadcast/broadcast'
-
 @NgModule({
   declarations: [
     MyApp,
@@ -31,12 +27,12 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     PopoverComponent
 
-    //BroadcastPage
+   
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-      //     tabsLayout: 'icon-start',
+          tabsLayout: 'icon-start',
     }),
     ReactiveFormsModule,
     HttpModule,
