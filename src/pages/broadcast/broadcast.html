@@ -10,7 +10,11 @@
 </ion-header>
 
 <ion-content>
+  <br /><br />
+   <img src="assets/imgs/broadcast.png" />
+  <br /><br />
 
+ <!-- <form [formGroup]='form' (ngSubmit)="send()"> -->
   <ion-list>
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
@@ -44,8 +48,23 @@
       </ion-select>
 </ion-item>
 
+<ion-item *ngIf="selection === 'manual'">
+     <ion-textarea  name="title" placeholder="Enter a Phone number" type="number"></ion-textarea>
+     </ion-item>
+
+
+     <ion-item>
+      <ion-label>Send via </ion-label>
+      <ion-select>
+         <ion-option disabled="true" selected="true" value="sms">SMS</ion-option>
+      </ion-select>
+
+
+    </ion-item>
+
+
     <ion-item>
-    <ion-label floating>Title of Message</ion-label>
+    <ion-label floating>Sender's name</ion-label>
     <ion-input  name="title" type="text"></ion-input>
   </ion-item>
 
@@ -53,11 +72,8 @@
 
     <!--<ion-label floating>Password</ion-label> -->
    <ion-textarea name="message" placeholder="Type your message here" type="password"></ion-textarea>
-
+   <br /><br />
+   <button type="submit" [disabled]="" ion-button color="secondary" block outline>Send</button> 
   </ion-list>
-
-  <div padding>
-    <button ion-button color="primary" block outline>SEND SMS</button>
-  </div>
 
 </ion-content>

@@ -6,6 +6,7 @@ import {
   ViewController
 } from "ionic-angular";
 import { Http, Headers } from "@angular/http";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 /**
  * Generated class for the BroadcastPage page.
  *
@@ -23,12 +24,13 @@ export class BroadcastPage {
   userDetails: any;
   result: any;
   groups: any
-
+ form: FormGroup;
   constructor(
     private http: Http,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public formbuilder: FormBuilder,
   ) {}
 
   ionViewDidLoad() {

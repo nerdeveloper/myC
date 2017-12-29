@@ -83,6 +83,21 @@ export class LoginPage {
     );
     broswer.show();
   }
+
+  iabForget() {
+    const options: InAppBrowserOptions = {
+      clearsessioncache: "yes",
+      toolbar: "yes",
+      toolbarposition: "top"
+    };
+    const broswer = this.iab.create(
+      "https://mychurchmember.com/forgot_password",
+      "_self",
+      options
+    );
+    broswer.show();
+  }
+
   method() {
     const userData = JSON.parse(localStorage.getItem("data"));
     this.userDetails = userData.data;

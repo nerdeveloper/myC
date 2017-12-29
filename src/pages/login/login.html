@@ -19,7 +19,7 @@
    <ion-input formControlName="password" [(ngModel)]="info.password" value="favour" name="password" placeholder="Password" type="password"></ion-input>
   </ion-item> 
 <br /><br />
-<a class="align" [navPush]="forget">Forgot Password?</a>
+<a class="align" (click)="iabForget()">Forgot Password?</a>
 
 <br />
 <br />
