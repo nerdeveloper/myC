@@ -1,27 +1,25 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler,} from 'ionic-angular';
-import { MyApp } from './app.component';
+import { NgModule, ErrorHandler } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
+import { MyApp } from "./app.component";
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+import { AboutPage } from "../pages/about/about";
+import { ContactPage } from "../pages/contact/contact";
+import { HomePage } from "../pages/home/home";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import  {PopoverComponent } from '../components/popover/popover';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import  {ReactiveFormsModule} from '@angular/forms';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { Network } from '@ionic-native/network';
-import {HttpModule} from '@angular/http'
-
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { PopoverComponent } from "../components/popover/popover";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { ReactiveFormsModule } from "@angular/forms";
+import { AuthServiceProvider } from "../providers/auth-service/auth-service";
+import { Network } from "@ionic-native/network";
+import { HttpModule } from "@angular/http";
+import { IonicStorageModule }  from '@ionic/storage';
 
 
 
 //import  { BroadcastPage } from '../pages/broadcast/broadcast'
-
-
 
 @NgModule({
   declarations: [
@@ -29,19 +27,21 @@ import {HttpModule} from '@angular/http'
     AboutPage,
     ContactPage,
     HomePage,
-    PopoverComponent,
+    PopoverComponent
 
     //BroadcastPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp,{
-//     tabsLayout: 'icon-start',
-
+    IonicModule.forRoot(MyApp, {
+      //     tabsLayout: 'icon-start',
     }),
-   ReactiveFormsModule,
-   HttpModule,
-    
+    ReactiveFormsModule,
+    HttpModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,16 +49,17 @@ import {HttpModule} from '@angular/http'
     AboutPage,
     ContactPage,
     HomePage,
-    PopoverComponent,
-   // BroadcastPage
+    PopoverComponent
+    // BroadcastPage
   ],
 
   providers: [
     StatusBar,
     SplashScreen,
-    InAppBrowser, Network,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider,
+    InAppBrowser,
+    Network,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

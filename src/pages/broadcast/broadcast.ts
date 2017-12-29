@@ -7,6 +7,9 @@ import {
 } from "ionic-angular";
 import { Http, Headers } from "@angular/http";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { Storage } from '@ionic/storage';
+
+
 /**
  * Generated class for the BroadcastPage page.
  *
@@ -31,6 +34,8 @@ export class BroadcastPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public formbuilder: FormBuilder,
+    private storage: Storage
+
   ) {}
 
   ionViewDidLoad() {
@@ -76,7 +81,13 @@ let apiurl =
         //   localStorage.setItem('property', JSON.stringify(this.result));
 
         //}
-      });
+     
+     });
+
+//this.storage.set('name', 'max');
+this.storage.get('name').then((val) => {
+    console.log('Your age is', val);
+  });
       
   }
 
