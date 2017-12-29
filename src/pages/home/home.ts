@@ -97,7 +97,7 @@ this.userDetails = userData.data;
     let url =
       "https://mychurchmember.com/api/get/messages" +
       "?token=" +
-      this.userDetails.token + "&church_id=" + this.userDetails.id;
+      this.userDetails.token + "&church_id=" + this.userDetails.church.id;
     this.http.get(url).subscribe(data =>{
       this.result = data;
       if(this.result.code === "200"){

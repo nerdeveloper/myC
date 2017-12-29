@@ -105,7 +105,7 @@ export class LoginPage {
       "https://mychurchmember.com/api/get/church" +
       "?token=" +
       this.userDetails.token;
-    let params = "church_id=" + this.userDetails.id;
+    let params = "church_id=" + this.userDetails.church.id;
     let headers = new Headers();
     headers.append("Content-Type", "application/x-www-form-urlencoded");
     this.http

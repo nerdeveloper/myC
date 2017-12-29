@@ -61,7 +61,7 @@ info:any;
       "https://mychurchmember.com/api/get/phonebase" +
       "?token=" +
       this.userDetails.token;
-    let params = "church_id=" + this.userDetails.id;
+    let params = "church_id=" + this.userDetails.church.id;
     let headers = new Headers();
     headers.append("Content-Type", "application/x-www-form-urlencoded");
     this.http
@@ -81,7 +81,7 @@ let apiurl =
       "https://mychurchmember.com/api/get/churchgroup" +
       "?token=" +
       this.userDetails.token;
-    let param = "church_id=" + this.userDetails.id;
+    let param = "church_id=" + this.userDetails.church.id;
     let header = new Headers();
     header.append("Content-Type", "application/x-www-form-urlencoded");
     this.http
