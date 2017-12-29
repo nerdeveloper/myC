@@ -16,6 +16,8 @@ import { AuthServiceProvider } from "../providers/auth-service/auth-service";
 import { Network } from "@ionic-native/network";
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule }  from '@ionic/storage';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -38,6 +40,7 @@ import { IonicStorageModule }  from '@ionic/storage';
     }),
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'websql']

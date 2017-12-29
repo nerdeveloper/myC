@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, PopoverController, ModalController, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import {PopoverComponent} from '../../components/popover/popover' ; 
-//import {Http, Headers,} from '@angular/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -21,10 +22,12 @@ export class HomePage {
    public userDetails: any;
     public user : any;
 public userGet: any;
-
+result:any
+data: any;
 
   constructor(public loadingCtrl: LoadingController ,
-    //private http: Http
+    private http: HttpClient,
+    private storage: Storage,
     public navCtrl: NavController, 
     public popoverCtrl: PopoverController, 
     public modalCtrl: ModalController){
@@ -83,7 +86,28 @@ this.userDetails = userData.data;
         
 
         console.log("home is here");
- 
+  console.log("ionViewDidLoad BroadcastPage");
+    const userData = JSON.parse(localStorage.getItem("data"));
+    this.userDetails = userData.data;
+    let url =
+      "https://mychurchmember.com/api/get/messages" +
+      "?token=" +
+      this.userDetails.token + "&church_id=" + this.userDetails.id;
+    this.http .get(url).subscribe(data =>{
+      this.result = data;
+      if(this.result.code === "200"){
+      console.log(this.result);
+      this.storage.set('message', JSON.stringify(this.result))
+    }
+
+    })
+     
+
+        // if(this.result.code === "200"){
+         // localStorage.setItem('property', JSON.stringify(this.result));
+
+      //  }
+     // });
       }
    
 
