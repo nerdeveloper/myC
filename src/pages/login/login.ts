@@ -117,7 +117,7 @@ export class LoginPage {
         console.log(this.result);
         if (this.result.code === "200") {
           localStorage.setItem("property", JSON.stringify(this.result));
-          this.navCtrl.push("TabsPage");
+          this.navCtrl.setRoot("TabsPage");
         }
       });
   }

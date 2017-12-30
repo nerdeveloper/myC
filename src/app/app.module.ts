@@ -32,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-          tabsLayout: 'icon-start',
+       tabsLayout: 'icon-start',
     }),
     ReactiveFormsModule,
     HttpModule,
