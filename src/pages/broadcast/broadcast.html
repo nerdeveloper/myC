@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content>
+  
   <br /><br />
    <img src="assets/imgs/broadcast.png" />
   <br /><br />
@@ -19,31 +20,31 @@
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
       <ion-select [(ngModel)]="selection">
-         <ion-option value="phone_base_id">Phone Number Base</ion-option>
-       <ion-option value="church_group">Group Recipient</ion-option>
+         <ion-option value="phonebase">Phone Number Base</ion-option>
+       <ion-option value="group">Group Recipient</ion-option>
        <ion-option value="manual">Manual Phone number insert</ion-option>
       </ion-select>
 
 
     </ion-item>
 
-    <ion-item *ngIf="selection === 'phone_base'">
+    <ion-item *ngIf="selection === 'phonebase'">
       <ion-label>Select an Option </ion-label>
-      <ion-select [(ngModel)]="via">
-         <ion-option *ngFor="let item of result" [value]="item.id">{{item.group_name}}</ion-option>
+      <ion-select [(ngModel)]="phone_base_id">
+         <ion-option *ngFor="let item of result"  [value]="item.id">{{item.group_name}}</ion-option>
       </ion-select>
 </ion-item>
 
 
       <ion-item *ngIf="selection === 'group'">
       <ion-label>Select an Option </ion-label>
-      <ion-select [(ngModel)]="via">
-         <ion-option *ngFor="let item of groups" [value]="item.id">{{item.name}}</ion-option>
+      <ion-select [(ngModel)]="church_group">
+         <ion-option *ngFor="let item of groups"  [value]="item.id">{{item.name}}</ion-option>
       </ion-select>
 </ion-item>
 
 <ion-item *ngIf="selection === 'manual'">
-     <ion-textarea  name="title" placeholder="Enter a Phone number" type="number"></ion-textarea>
+     <ion-textarea [(ngModel)]="phone_no" placeholder="Enter a Phone number" type="text"></ion-textarea>
      </ion-item>
 
 
@@ -69,5 +70,4 @@
    <br /><br />
    <button type="submit" (click)="sendSms()" ion-button color="secondary" block outline>Send</button> 
   </ion-list>
-
 </ion-content>
