@@ -28,10 +28,7 @@ export class PopoverComponent {
     //causing the nav controller to animate the new page in
     this.navCtrl.push("ProfilePage");
   }
- // backtoLogin() {
-  //	const root = this.app.getRootNav();
-  //	root.popToRoot()
- // }
+
   logout(){
   	localStorage.clear();
     this.storage.clear()

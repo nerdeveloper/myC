@@ -19,9 +19,8 @@
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
       <ion-select [(ngModel)]="selection">
-         <ion-option value="phone_base">Phone Number Base</ion-option>
-          <ion-option value="individual">Individual Recipient</ion-option>
-       <ion-option value="group">Group Recipient</ion-option>
+         <ion-option value="phone_base_id">Phone Number Base</ion-option>
+       <ion-option value="church_group">Group Recipient</ion-option>
        <ion-option value="manual">Manual Phone number insert</ion-option>
       </ion-select>
 
@@ -33,13 +32,8 @@
       <ion-select [(ngModel)]="via">
          <ion-option *ngFor="let item of result" [value]="item.id">{{item.group_name}}</ion-option>
       </ion-select>
+</ion-item>
 
-
-    </ion-item>
-
-     <ion-item *ngIf="selection === 'individual'">
-     <ion-input  name="title" placeholder="Enter a Phone number" type="text"></ion-input>
-     </ion-item>
 
       <ion-item *ngIf="selection === 'group'">
       <ion-label>Select an Option </ion-label>
@@ -65,15 +59,15 @@
 
     <ion-item>
     <ion-label floating>Sender's name</ion-label>
-    <ion-input maxlength="11" name="title" type="text"></ion-input>
+    <ion-input maxlength="11" [(ngModel)]="sender"  type="text"></ion-input>
   </ion-item>
 
 
 
     <!--<ion-label floating>Password</ion-label> -->
-   <ion-textarea name="message" placeholder="Type your message here" type="password"></ion-textarea>
+   <ion-textarea [(ngModel)]="message" placeholder="Type your message here" type="password"></ion-textarea>
    <br /><br />
-   <button type="submit" [disabled]="" ion-button color="secondary" block outline>Send</button> 
+   <button type="submit" (click)="sendSms()" ion-button color="secondary" block outline>Send</button> 
   </ion-list>
 
 </ion-content>

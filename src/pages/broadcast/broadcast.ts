@@ -23,7 +23,6 @@ import { Storage } from '@ionic/storage';
   templateUrl: "broadcast.html"
 })
 export class BroadcastPage {
-  selection: string;
   userDetails: any;
   result: any;
   groups: any
@@ -31,6 +30,10 @@ export class BroadcastPage {
  getMessages : any;
 info:any;
 
+//values of sending messages
+message: string;
+selection: string;
+sender: string
 
   constructor(
     private http: Http,
@@ -48,6 +51,32 @@ info:any;
 
   }
  
+ sendSms(){
+    const userData = JSON.parse(localStorage.getItem("data"));
+    this.userDetails = userData.data;
+    let url =
+      "https://mychurchmember.com/api/send/send_sms" +
+      "?token=" +
+      this.userDetails.token;
+    let params = "message" + this.message + "type" + this.selection + "sender_name" + this.sender ;
+    let headers = new Headers(); 
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+    this.http
+      .post(url, params, { headers: headers })
+      .map(response => response.json())
+      .toPromise()
+      .then(response => {
+        this.result = response;
+        console.log(this.result);
+
+        // if(this.result.code === "200"){
+        //   localStorage.setItem('property', JSON.stringify(this.result));
+
+        //}
+      });
+
+ }  
+
 
 
 
