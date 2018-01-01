@@ -59,15 +59,17 @@
 
 
     <ion-item>
-    <ion-label>Sender's name</ion-label>
-    <ion-input maxlength="11" [(ngModel)]="sender"  type="text"></ion-input>
+    <ion-label floating>Sender's name</ion-label>
+    <ion-input max="11" [(ngModel)]="sender" type="text"></ion-input>
   </ion-item>
 
 
-
-    <!--<ion-label floating>Password</ion-label> -->
-   <ion-textarea [(ngModel)]="message" placeholder="Type your message here" type="password"></ion-textarea>
+   
+    <ion-item>
+    <ion-label floating>Your Message</ion-label>
+   <ion-textarea [(ngModel)]="message" type="text"></ion-textarea>
+ </ion-item>
    <br /><br />
-   <button type="submit" (click)="sendSms()" ion-button color="secondary" block outline>Send</button> 
+   <button type="submit" (click)="sendSms()" ion-button color="secondary" block >Send</button> 
   </ion-list>
 </ion-content>
