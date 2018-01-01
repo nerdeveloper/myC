@@ -94,6 +94,7 @@ console.log(this.getparam);
  sendSms(){
    let loading = this.loadingCtrl.create({
       content: "Sending...",
+      spinner: "bubbles",
     });
     loading.present();
     const userData = JSON.parse(localStorage.getItem("data"));
@@ -123,8 +124,13 @@ console.log(this.getparam);
         subTitle: "Message Sent!",
         buttons: ["Ok"]
       });
-      alert.present();
-      this.dismiss() ;
+
+  alert.present();
+  alert.onDidDismiss(() => {
+   console.log('Dismissed loading');
+    this.dismiss() ;
+ });
+     
       
 
         }else if(this.network.type == "none"){
