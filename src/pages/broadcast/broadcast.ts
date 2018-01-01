@@ -63,11 +63,8 @@ getphone: string = "phone_base_id";
   ) { 
    this.form = formbuilder.group({
       selection: [null, Validators.required],
-    //  phonebase: [null, Validators.required],
-     // group: [null, Validators.required],
       sender: [null, Validators.required],
       message: [null, Validators.required],
-     // manual: [null, Validators.required],
     }); }
 
 
@@ -192,11 +189,6 @@ let apiurl =
       .then(response => {
         this.groups = response.data;
         console.log(this.groups);
-
-        // if(this.result.code === "200"){
-        //   localStorage.setItem('property', JSON.stringify(this.result));
-
-        //}
      
      });
       
@@ -204,10 +196,6 @@ let apiurl =
 
   dismiss() {
     this.viewCtrl.dismiss();
-  }
-  show = false;
-  openPhone() {
-    this.show = !this.show;
   }
 
 }
