@@ -169,11 +169,6 @@ console.log(this.getparam);
       .then(response => {
         this.result = response.data;
         console.log(this.result);
-
-        // if(this.result.code === "200"){
-        //   localStorage.setItem('property', JSON.stringify(this.result));
-
-        //}
       });
 let apiurl =
       "https://mychurchmember.com/api/get/churchgroup" +
