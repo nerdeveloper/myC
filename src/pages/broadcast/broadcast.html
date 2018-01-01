@@ -15,11 +15,11 @@
    <img src="assets/imgs/broadcast.png" />
   <br /><br />
 
- <!-- <form [formGroup]='form' (ngSubmit)="send()"> -->
+  <form [formGroup]='form' (ngSubmit)="sendSms()"> 
   <ion-list inset>
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
-      <ion-select [(ngModel)]="selection">
+      <ion-select formControlName="selection" [(ngModel)]="selection">
          <ion-option value="phonebase">Phone Number Base</ion-option>
        <ion-option value="group">Group Recipient</ion-option>
        <ion-option value="manual">Manual Phone number insert</ion-option>
@@ -30,7 +30,7 @@
 
     <ion-item *ngIf="selection === 'phonebase'">
       <ion-label>Select an Option </ion-label>
-      <ion-select [(ngModel)]="phone_base_id">
+      <ion-select  [ngModelOptions]="{standalone: true}" [(ngModel)]="phone_base_id">
          <ion-option *ngFor="let item of result"  [value]="item.id">{{item.group_name}}</ion-option>
       </ion-select>
 </ion-item>
@@ -38,13 +38,13 @@
 
       <ion-item *ngIf="selection === 'group'">
       <ion-label>Select an Option </ion-label>
-      <ion-select [(ngModel)]="church_group">
+      <ion-select  [ngModelOptions]="{standalone: true}" [(ngModel)]="church_group">
          <ion-option *ngFor="let item of groups"  [value]="item.id">{{item.name}}</ion-option>
       </ion-select>
 </ion-item>
 
 <ion-item *ngIf="selection === 'manual'">
-     <ion-textarea [(ngModel)]="phone_no" placeholder="Enter a Phone number" type="text"></ion-textarea>
+     <ion-textarea   [ngModelOptions]="{standalone: true}" [(ngModel)]="phone_no" placeholder="Enter a Phone numbers" type="text"></ion-textarea>
      </ion-item>
 
 
@@ -60,16 +60,17 @@
 
     <ion-item>
     <ion-label floating>Sender's name</ion-label>
-    <ion-input max="11" [(ngModel)]="sender" type="text"></ion-input>
+    <ion-input formControlName="sender" max="11" [(ngModel)]="sender" type="text"></ion-input>
   </ion-item>
 
 
    
     <ion-item>
     <ion-label floating>Your Message</ion-label>
-   <ion-textarea [(ngModel)]="message" type="text"></ion-textarea>
+   <ion-textarea formControlName="message" [(ngModel)]="message" type="text"></ion-textarea>
  </ion-item>
    <br /><br />
-   <button type="submit" (click)="sendSms()" ion-button color="secondary" block>Send</button> 
+   <button type="submit" [disabled]="!form.valid" ion-button color="secondary" block>Send</button> 
   </ion-list>
+</form>
 </ion-content>

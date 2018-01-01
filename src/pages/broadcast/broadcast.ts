@@ -3,11 +3,15 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ViewController
+  ViewController,
+  LoadingController,
+  AlertController
 } from "ionic-angular";
 import { Http, Headers, } from "@angular/http";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { Storage } from '@ionic/storage';
+import { CustomValidators } from "ng2-validation";
+import { Network } from "@ionic-native/network";
 
 
 /**
@@ -36,6 +40,7 @@ church_group: any;
 phone_base_id: any;
 
 
+
 //values of sending messages
 message: string;
 selection: string;
@@ -50,12 +55,23 @@ getphone: string = "phone_base_id";
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public formbuilder: FormBuilder,
-    public storage: Storage
+    public storage: Storage,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public network: Network,
+
+  ) { 
+   this.form = formbuilder.group({
+      selection: [null, Validators.required],
+    //  phonebase: [null, Validators.required],
+     // group: [null, Validators.required],
+      sender: [null, Validators.required],
+      message: [null, Validators.required],
+     // manual: [null, Validators.required],
+    }); }
 
 
 
-
-  ) {  }
   justdo(){
 if(this.selection === 'manual'){
 this.adapt = this.getNumber;
@@ -79,6 +95,10 @@ console.log(this.getparam);
   }
  
  sendSms(){
+   let loading = this.loadingCtrl.create({
+      content: "Sending...",
+    });
+    loading.present();
     const userData = JSON.parse(localStorage.getItem("data"));
     this.userDetails = userData.data;
     this.justdo();
@@ -99,11 +119,32 @@ console.log(this.getparam);
       .then(response => {
         this.result = response;
         console.log(this.result);
+ if(this.result.code === "200"){
+   loading.dismissAll();
+   let alert = this.alertCtrl.create({
+        title: "Success",
+        subTitle: "Message Sent!",
+        buttons: ["Ok"]
+      });
+      alert.present();
+      
 
-        // if(this.result.code === "200"){
-        //   localStorage.setItem('property', JSON.stringify(this.result));
-
-        //}
+        }else if(this.network.type == "none"){
+          let alert = this.alertCtrl.create({
+        title: "Error",
+        subTitle: "Message was Unsuccessful! ",
+        buttons: ["Try Again!"]
+      });
+      alert.present();
+        }else{
+          loading.dismiss();
+      let alert = this.alertCtrl.create({
+        title: "Network",
+        subTitle: "Network Error Occured! Check your Internet Settings",
+        buttons: ["Dismiss"]
+      });
+      alert.present();
+        }
       });
 
  }  
