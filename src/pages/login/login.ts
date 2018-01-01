@@ -54,10 +54,7 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     private iab: InAppBrowser
   ) {
-    //this.email = new FormControl("", CustomValidators.email);
-    //this.form = new FormGroup({
-    //email: this.email
-    //})
+   
     this.form = formbuilder.group({
       email: [
         null,

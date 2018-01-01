@@ -124,6 +124,7 @@ console.log(this.getparam);
         buttons: ["Ok"]
       });
       alert.present();
+      this.dismiss() ;
       
 
         }else if(this.network.type == "none"){
