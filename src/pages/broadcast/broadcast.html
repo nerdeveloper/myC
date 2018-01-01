@@ -16,7 +16,7 @@
   <br /><br />
 
  <!-- <form [formGroup]='form' (ngSubmit)="send()"> -->
-  <ion-list>
+  <ion-list inset>
   	   <ion-item>
       <ion-label>Select a Catergories </ion-label>
       <ion-select [(ngModel)]="selection">
@@ -59,7 +59,7 @@
 
 
     <ion-item>
-    <ion-label floating>Sender's name</ion-label>
+    <ion-label>Sender's name</ion-label>
     <ion-input maxlength="11" [(ngModel)]="sender"  type="text"></ion-input>
   </ion-item>
 
