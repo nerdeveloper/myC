@@ -2,22 +2,22 @@ import { Component } from '@angular/core';
 import { NavController, PopoverController, ModalController} from 'ionic-angular';
 import {PopoverComponent} from '../../components/popover/popover';
 import {Storage } from '@ionic/storage';
-import{Http, Headers} from '@angular/http';
+import{HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-	showMessages: any;
-	userDetails: any;
-	result:any
-
+	public showMessages: any;
+	public userDetails: any;
+	result:any;
+ showResult: any;
 
   constructor(public navCtrl: NavController, 
   	public popoverCtrl: PopoverController, private storage: Storage, 
   	public modalCtrl: ModalController,
-  	public http: Http) {
+  	public http: HttpClient) {
   	this.storage.get('message').then(data => {
    this.showMessages = JSON.parse(data).data;
  });
@@ -37,7 +37,8 @@ presentPopover(event) {
   	modal.present();
 
   }
- doRefresh(refresher){  const userData = JSON.parse(localStorage.getItem("data"));
+    doRefresh(refresher){
+    	const userData = JSON.parse(localStorage.getItem("data"));
     this.userDetails = userData.data;
     let url =
       "https://mychurchmember.com/api/get/messages" +
@@ -45,20 +46,31 @@ presentPopover(event) {
       this.userDetails.token + "&church_id=" + this.userDetails.church.id;
     this.http.get(url).subscribe(data =>{
       this.result = data;
+     // this.result = Array.of(this.result);
+        console.log(this.result);
       if(this.result.code === "200"){
-      console.log(this.result);
-      this.showMessages = JSON.stringify(this.result);
-      this.storage.set('message', this.showMessages)
+      console.log(this.result.code);
+      this.showResult = JSON.stringify(this.result);
+     this.storage.set('message', this.showResult)
     }
 
-     
-    
-
-    });
-    setTimeout(() => {
+     });
+    //console.log('Begin async operation', refresher);
+     this.storage.get('message').then(data => {
+   this.showMessages = JSON.parse(data).data;
+   console.log(this.showMessages);
+ });
+     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
-  
-}
+
+  }
+
+
+ ionViewCanEnter() {
+ 	console.log('this is it');
+ 	
+
+ }
 }
