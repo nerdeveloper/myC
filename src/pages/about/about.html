@@ -12,11 +12,18 @@ r<ion-header>
 </ion-header>
 
 <ion-content padding>
-   <ion-refresher (ionRefresh)="doRefresh($event)">
-   </ion-refresher>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Updating...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let item of showMessages">
-  <ion-card-header>
-    {{item.sender}}
+   <ion-card-header>
+  {{item.sender}}
   </ion-card-header>
   <ion-card-content>
    {{item.message}}
