@@ -63,8 +63,9 @@ getphone: string = "phone_base_id";
   ) { 
    this.form = formbuilder.group({
       selection: [null, Validators.required],
-      sender: [null, Validators.required],
+      'sender': ['', Validators.compose([Validators.required, Validators.maxLength(11)])],
       message: [null, Validators.required],
+
     }); }
 
 
