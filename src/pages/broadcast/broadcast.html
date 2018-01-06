@@ -62,7 +62,7 @@
     <ion-label floating>Sender's name</ion-label>
     <ion-input [(ngModel)]="sender" type="text"  [formControl]="form.controls['sender']" ></ion-input>
   </ion-item> 
-  <p *ngIf="!form.controls['gender'].valid && form.controls['gender'].touched" class="error">Only 11 character Allowed!</p>
+  <p *ngIf="!form.controls['sender'].valid && form.controls['sender'].touched" class="error">Only 11 character Allowed!</p>
  
    
     <ion-item>
