@@ -10,7 +10,6 @@ import {
 import { Http, Headers, } from "@angular/http";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { Storage } from '@ionic/storage';
-import { CustomValidators } from "ng2-validation";
 import { Network } from "@ionic-native/network";
 
 
